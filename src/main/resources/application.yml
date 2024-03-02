@@ -1,0 +1,36 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: servicio-ventas
+          uri: lb://servicio-ventas
+          predicates:
+            - Path=/api/services/**
+          filters:
+            - StripPrefix=2
+        - id: gestionEmpCli
+          uri: lb://gestionEmpCli
+          predicates:
+            - Path=/api/usuarios/**
+          filters:
+            - StripPrefix=2
+        - id: servicioUsuarios
+          uri: lb://servicioUsuarios
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1
+        - id: servicioOauth
+          uri: lb://servicioOauth
+          predicates:
+            - Path=/security/**
+          filters:
+            - StripPrefix=1
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
