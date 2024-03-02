@@ -17,16 +17,16 @@ spring:
             - Path=/api/usuarios/**
           filters:
             - StripPrefix=2
+        - id: servicioOauth
+          uri: lb://servicioOauth
+          predicates:
+            - Path=/api/security/**
+          filters:
+            - StripPrefix=2
         - id: servicioUsuarios
           uri: lb://servicioUsuarios
           predicates:
             - Path=/api/**
-          filters:
-            - StripPrefix=1
-        - id: servicioOauth
-          uri: lb://servicioOauth
-          predicates:
-            - Path=/security/**
           filters:
             - StripPrefix=1
 management:
