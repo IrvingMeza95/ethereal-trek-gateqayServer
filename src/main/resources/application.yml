@@ -23,12 +23,6 @@ spring:
             - Path=/api/security/**
           filters:
             - StripPrefix=2
-#        - id: servicioUsuarios
-#          uri: lb://servicioUsuarios
-#          predicates:
-#            - Path=/api/**
-#          filters:
-#            - StripPrefix=1
 management:
   endpoints:
     web:
