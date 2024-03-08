@@ -18,12 +18,12 @@ public class SpringSecurityConfig {
 	public SecurityWebFilterChain configure(ServerHttpSecurity http) {
 		return http.authorizeExchange()
 				.pathMatchers("/api/security/oauth/**", "/api/usuarios/extras/**").permitAll()
-				.pathMatchers(HttpMethod.GET, "/api/services/servicios/listar",
-						"/api/services/paquetes/listar"
+				.pathMatchers(HttpMethod.GET, "/api/services/servicios/**",
+						"/api/services/paquetes/**"
 						).permitAll()
-				.pathMatchers(HttpMethod.GET, "/api/usuarios/clientes/{param}",
-						"/api/usuarios/empleados/{param}").hasAnyRole("ADMIN", "USER")
-				.pathMatchers("/api/usuarios/**", "/api/auth/**").hasRole("ADMIN")
+				.pathMatchers(HttpMethod.GET, "/api/usuarios/clientes/**",
+						"/api/services/**").hasAnyRole("ADMIN", "USER")
+				.pathMatchers("/api/usuarios/**", "/api/services/**").hasRole("ADMIN")
 				.anyExchange().authenticated()
 				.and().addFilterAt(authenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
 				.csrf().disable()
