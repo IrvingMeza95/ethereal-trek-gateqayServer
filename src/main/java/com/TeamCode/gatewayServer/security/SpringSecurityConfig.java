@@ -21,9 +21,9 @@ public class SpringSecurityConfig {
 				.pathMatchers(HttpMethod.GET, "/api/services/servicios/**",
 						"/api/services/paquetes/**"
 						).permitAll()
-				.pathMatchers(HttpMethod.GET, "/api/usuarios/clientes/**",
+				.pathMatchers(HttpMethod.GET, "/api/usuarios/roles/**", "/api/usuarios/extras/**",
 						"/api/services/**").hasAnyRole("ADMIN", "USER")
-				.pathMatchers("/api/usuarios/**", "/api/services/**").hasRole("ADMIN")
+				.pathMatchers("/api/usuarios/**", "/api/usuarios/roles/**", "/api/services/**").hasRole("ADMIN")
 				.anyExchange().authenticated()
 				.and().addFilterAt(authenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
 				.csrf().disable()
