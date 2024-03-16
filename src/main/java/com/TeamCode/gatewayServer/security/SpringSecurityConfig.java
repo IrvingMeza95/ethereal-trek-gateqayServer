@@ -29,7 +29,7 @@ public class SpringSecurityConfig {
 	@Bean
 	public SecurityWebFilterChain configure(ServerHttpSecurity http) {
 		return http.authorizeExchange()
-				.pathMatchers("/api/security/oauth/**", "/api/usuarios/extras/**").permitAll()
+				.pathMatchers("/api/security/oauth/**", "/api/emails/verificacion", "/api/usuarios/extras/**").permitAll()
 				.pathMatchers(HttpMethod.GET, "/api/services/servicios/**",
 						"/api/services/paquetes/**"
 						).permitAll()
