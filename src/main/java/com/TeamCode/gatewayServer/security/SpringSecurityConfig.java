@@ -29,14 +29,13 @@ public class SpringSecurityConfig {
 	@Bean
 	public SecurityWebFilterChain configure(ServerHttpSecurity http) {
 		return http.authorizeExchange()
-				.pathMatchers("/api/security/oauth/**", "/api/emails/verificacion", "/api/usuarios/extras/**").permitAll()
+				.pathMatchers("/api/security/oauth/**", "/api/emails/verificacion",
+						"/api/usuarios/paises/**").permitAll()
 				.pathMatchers(HttpMethod.GET, "/api/services/servicios/**",
 						"/api/services/paquetes/**"
 						).permitAll()
-				.pathMatchers(HttpMethod.GET, "/api/usuarios/roles/**", "/api/usuarios/extras/**",
-						"/api/services/**", "/api/compras/**", "/api/services/**").hasAnyRole("ADMIN", "USER")
-				.pathMatchers("/api/usuarios/**",
-						"/api/usuarios/roles/**", "/api/services/**", "/api/compras/**", "/api/services/**").hasRole("ADMIN")
+				.pathMatchers(HttpMethod.GET, "/api/usuarios/roles/**", "/api/usuarios/clientes/**").hasAnyRole("ADMIN", "USER")
+				.pathMatchers("/api/usuarios/**", "/api/services/**").hasRole("ADMIN")
 				.anyExchange().authenticated()
 				.and().cors().configurationSource(corsConfigurationSource())
 				.and().addFilterAt(authenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
