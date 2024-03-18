@@ -34,7 +34,10 @@ public class SpringSecurityConfig {
 				.pathMatchers(HttpMethod.GET, "/api/services/servicios/**",
 						"/api/services/paquetes/**"
 						).permitAll()
-				.pathMatchers(HttpMethod.GET, "/api/usuarios/roles/**", "/api/usuarios/clientes/**").hasAnyRole("ADMIN", "USER")
+				.pathMatchers(HttpMethod.GET, "/api/usuarios/roles/**", "/api/usuarios/clientes/**",
+				"/api/usuarios/empleados/cargo", "/api/services/ventas/tipos-de-venta", "/api/services/ventas/medios-de-pago",
+				"/api/services/servicios/tipo-de-servicios"
+				).hasAnyRole("ADMIN", "USER")
 				.pathMatchers("/api/usuarios/**", "/api/services/**").hasRole("ADMIN")
 				.anyExchange().authenticated()
 				.and().cors().configurationSource(corsConfigurationSource())
